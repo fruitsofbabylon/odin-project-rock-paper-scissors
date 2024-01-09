@@ -9,10 +9,6 @@ function getComputerChoice() {
     }
 }
 
-let computerSelection = getComputerChoice();
-
-let userPrompt = prompt("Let's play Rock Paper Scissors game! Please write down your choice for this round.");
-
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     let winMessage = "You win! " + playerSelection + " beats " + computerSelection;
@@ -43,4 +39,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(userPrompt, computerSelection));
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = getComputerChoice();
+        let userPrompt = prompt("Let's play Rock Paper Scissors game! Please write down your choice for this round.");
+        console.log(playRound(userPrompt, computerSelection));
+    }
+}
+
+game();
