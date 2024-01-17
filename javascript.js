@@ -31,44 +31,47 @@ function playRound(playerSelection, computerSelection) {
     let loseMessage = "You lose! " + computerSelection + " beats " + playerSelection;
     if (playerSelection == computerSelection) {
         //let userPrompt = prompt("That was a tie! Let's replay the round");
-        return "That was a tie! Let's replay the round";
+        result.textContent = "That was a tie! Let's replay the round";
     } else if (playerSelection == "Rock") {
         if (computerSelection == "Paper") {
             ++computerCount;
-            return loseMessage;
+            result.textContent = loseMessage;
         } else if (computerSelection == "Scissors") {
             ++userCount;
-            return winMessage;
+            result.textContent = winMessage;
         }
     } else if (playerSelection == "Paper") {
         if (computerSelection == "Scissors") {
             ++computerCount;
-            return loseMessage;
+            result.textContent = loseMessage;
         } else if (computerSelection == "Rock") {
             ++userCount;
-            return winMessage;
+            result.textContent = winMessage;
         }
     } else if (playerSelection == "Scissors") {
         if (computerSelection == "Rock") {
             ++computerCount;
-            return loseMessage;
+            result.textContent = loseMessage;
         } else if (computerSelection == "Paper") {
             ++userCount;
-            return winMessage;
+            result.textContent = winMessage;
         }
     } else {
         //let userPrompt = prompt("Something went wrong, please rewrite the prompt");
-        return "Something went wrong, please rewrite the prompt";
+        result.textContent = "Something went wrong, please rewrite the prompt";
     }
 }
 
 const buttons = document.querySelectorAll('button');
+const result = document.createElement('div');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    console.log(playRound(getPlayerChoice(e), getComputerChoice()));
+    playRound(getPlayerChoice(e), getComputerChoice());
   });
 });
+
+document.body.appendChild(result);
 
 /*
 function game() {
