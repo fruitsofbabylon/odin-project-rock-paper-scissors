@@ -1,4 +1,4 @@
 # odin-project-rock-paper-scissors
  The Odin Project Foundations Course: Rock Paper Scissors
 
- The game is played using the prompt window and browser console where all results are announced. 
+Play Rock Paper Scissors with computer using buttons for each options. Each 5 rounds the winner will be announced. Ties don't count as rounds. 
