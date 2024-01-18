@@ -22,16 +22,14 @@ function getPlayerChoice(e) {
 
 let computerCount = 0;
 let userCount = 0;
+let roundCount = 0;
 
 function playRound(playerSelection, computerSelection) {
-    //playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    //playerSelection = getPlayerChoice(e);
-
     let winMessage = "You win! " + playerSelection + " beats " + computerSelection;
     let loseMessage = "You lose! " + computerSelection + " beats " + playerSelection;
     if (playerSelection == computerSelection) {
-        //let userPrompt = prompt("That was a tie! Let's replay the round");
         result.textContent = "That was a tie! Let's replay the round";
+        roundCount--;
     } else if (playerSelection == "Rock") {
         if (computerSelection == "Paper") {
             ++computerCount;
@@ -57,35 +55,27 @@ function playRound(playerSelection, computerSelection) {
             result.textContent = winMessage;
         }
     } else {
-        //let userPrompt = prompt("Something went wrong, please rewrite the prompt");
         result.textContent = "Something went wrong, please rewrite the prompt";
     }
 }
 
 const buttons = document.querySelectorAll('button');
 const result = document.createElement('div');
+const finalResult = document.createElement('div');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     playRound(getPlayerChoice(e), getComputerChoice());
+    roundCount++;
+    if (roundCount == 5) {
+        if (userCount > computerCount) {
+            finalResult.textContent = "You are the winner! You won " + userCount + " times out of 5.";
+        } else {
+            finalResult.textContent = "Computer is the winner! You lost " + computerCount + " times out of 5.";
+        }
+    }
   });
 });
 
 document.body.appendChild(result);
-
-/*
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let computerSelection = getComputerChoice();
-        let userPrompt = prompt("Let's play Rock Paper Scissors game! Please write down your choice for this round.");
-        console.log(playRound(userPrompt, computerSelection));
-    }
-    if (userCount > computerCount) {
-        console.log("You are the winner! You won " + userCount + " times out of 5.");
-    } else {
-        console.log("Computer is the winner! You lost " + computerCount + " times out of 5.");
-    }
-}
-
-game();
-*/
+document.body.appendChild(finalResult);
